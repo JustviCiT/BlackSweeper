@@ -1,0 +1,76 @@
+<html> 
+<head>
+<style type="text/css">
+body          {background:           black;}
+.contenitore {height:                 100%;
+              width:                  100%;
+              }
+.or          {width:                  100%;
+              height:                 10%;
+              }
+.ver         {width:                  25%;
+              height:                 80%;
+              }
+.img        {background:             black;
+             height:                 80%;
+             width:                    50%;
+             float:                    left;
+                       }
+ #immi     {left:                   40%;
+            top:                    49%;
+            position:               absolute;
+            }
+            
+#car      { position:              absolute;
+            top:                   30%;
+            left:                  41%;
+            }
+#back      { width:                100%;
+             height:               100%;
+             }
+
+
+
+</style>
+
+
+<script type="text/javascript">
+
+var cont=0
+
+c=window.setInterval('loading()',300)
+window.setTimeout('carica(c)',6600)
+
+function loading()
+{
+x=document.getElementById('immi')
+if (cont<10) {cont++} else {cont=0}
+x.style.left=40+cont+'%'
+} 
+
+function carica(p)
+{
+clearInterval(p)
+window.location.replace('campo.htm')
+}
+
+
+</script>
+
+<body>
+<img src="immi/loading.gif" id="immi">
+<img src="immi/carica.jpg" id="car">
+<div class="contenitore">
+ <div class="or">
+ </div>
+ <div class="ver" style="float:left;">
+ </div>
+ <div class="img"><img src="immi/load.jpg" id="back">
+ </div>
+ <div class="ver" style="float:right;">
+ </div>
+ <div class="or" style="clear: left;">
+ </div>
+ </div>
+</body>
+</html>

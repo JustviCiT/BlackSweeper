@@ -1,0 +1,45 @@
+
+body             {background-image:    url("back.jpg");
+                  color:               red;
+                 }
+
+table             {background:       #cc99ff;
+                  }
+
+td                {background:       #330033;
+                  border :            3px outset silver;
+                  }
+div              {float:             left;
+                  }
+                  
+#game            {width:             5%;
+                  height:            90%;
+                 }
+#over            {
+                  width:             20%;
+                  height:            90%;
+                  
+                                   
+                 }
+#tab              {
+                  height:            90%;
+                  width:              75%;
+                 }                 
+                                                   
+.contenitore    {
+                  height:               5%;
+                  width:               100%;
+                 }                    
+.bigimg        { position:           absolute; 
+                 top:                320px; 
+                 right:               20px;
+                 width:               200px;
+                 height:              50px;
+                 border:              2px solid silver;
+                 }
+.smlimg        { position:           absolute; 
+                 top:                  270px;; 
+                 right:                70px;
+                 width:               100px;
+                 height:              25px;
+                 }

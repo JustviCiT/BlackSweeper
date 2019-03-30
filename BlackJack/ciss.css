@@ -1,0 +1,91 @@
+body                                 {
+                    background:         	 #339933;
+                    font:               	 normal normal 16pt verdana;
+				    color:              	 black;
+                    }
+						
+.contenitore                {    
+				    float:                 	 left;
+                    }			 
+				 
+.bottone       		 	{
+                    margin-top:         	 20px;
+                    width:              	 100px; 
+				    height:             	 38px;  
+					font-weight:             bolder; 
+					}
+				 
+.bottone2    			{
+                    float:              	 right;
+			   	    font-weight:        	 bolder;
+                    margin-right:       	 20px;
+                    margin-top:         	 15px; 				  
+				    }
+
+#stato                            {
+					background:         	 #ffffff; 
+                    margin:                  20px;
+					float:              	 right;
+					width:              	 350px;  				  
+					height:             	 74px;
+					font:                    normal normal 12pt verdana; 
+                    border:             	 3px solid #cccccc;
+                    text-align:              center;
+                    color:                   black;  					
+				    } 
+				 
+#contenitore4             {
+                    height:            	     80px;
+					}
+				 
+#contenitore2    		{
+					height:             	 70px;
+					}
+				 
+#contenitore3    		{
+					height:             	 400px;
+					}		 
+				 
+.nn              			{
+					margin-left:        	 10px;
+					width:              	 20px; 
+					height:             	 20px;
+					float:              	 left;		  
+					}
+	
+.carte          			{
+					width:              	 110px;
+					height:             	 156px; 
+					border:             	 2px solid #cccccc;
+					padding:            	 2px;
+					margin-top:         	 30px;                      
+					margin-left:        	 15px;
+                    background-image:        url('black2.gif'); 
+                    background-position:     center center;	
+                    background-repeat:       no-repeat; 
+					}				 	 
+				 
+#carta           			{
+					border:             	 2px solid #cccccc;
+					padding:            	 5px;
+					margin-top:         	 90px;							
+					margin-left:        	 20px;
+					float:              	 left;	                   		   
+					}
+
+				  
+.mess         			{
+					float:              	 left; 
+					margin-left:        	 5px;	  
+					padding:            	 15px;
+					background:         	 #ffffff; 
+                    border:             	 3px solid #cccccc;				  
+					}
+				  
+.coins          			{
+					border:             	 3px solid #cccccc;
+					padding:            	 10px;
+					float:              	 right; 
+					background:         	 #000000;
+					color:                   yellow;
+					}			  

@@ -1,0 +1,48 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="description" content="AUA - Sito su un progetto scolastico ">
+<meta name="keywords" content="Campo minato,blackjack,BlackJack,Credits,Progetto esempio">
+<title>Titolo segreto</title>
+
+<style type="text/css">
+@import url('generale.css');                      
+</style>
+
+<script type="text/JavaScript">
+
+var s='none'
+function crediti()
+{
+document.getElementById('foto').style.display="none"
+if (s=='none') {s='block'} else {s='none'}
+document.getElementById('cionno').style.display=s
+document.getElementById('sax').style.display=s
+document.getElementById('ace').style.display=s
+}
+
+function carica(p)
+{
+document.getElementById('foto').style.display='block'
+if (p=='malus') {n='Alexander';c="Cionini";d="M4LU5";cl="5INFO1"}
+if (p=='sassi') {n='Ricardos';c="Sassi";d="SAX";cl="5INFO1"}
+if (p=='ace') {n='Vicicletta';c="Serov";d="ViC";cl="5INFO1"}
+document.getElementById('foto').innerHTML="<img src='Immi/"+p+"-.jpg' style='float:left;margin-right:13px;'> NOME : "+n+" <br> COGNOME : "+c+" <br> CLASSE : "+cl+"<br> NICKNAME : "+d+"  "
+}
+</script>
+
+</head>
+
+<body>
+<div id="titolo"><img src='Immi/pro.jpg' style='width:100%;height:100%;'></div>                   
+<div id="black" onClick="window.open('BlackJack/loading/loading.html','Black Jack PRO!','')"></div>
+<div id="campo" onClick="window.open('CampoMinato/loading.html','Campo Minato PRO!','')"></div>
+ 
+<div id="credits" onClick="crediti()"></div>
+     <div class="name" id="cionno"onClick=""><img src="Immi/malus.jpg" class="icon"></div>
+     <div class="name" id="sax" onClick=""><img src="Immi/sassi.jpg" class="icon"></div>
+     <div class="name" id="ace" onClick=""><img src="Immi/ace.jpg" class="icon"></div>
+  <div id="foto"></div>
+
+</body>
+</html>

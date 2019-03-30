@@ -1,0 +1,383 @@
+<html> 
+<head>
+<style type="text/css">
+@import url('maluspro.css');
+</style>
+
+<script type="text/javascript">
+
+//commenti:
+//att=matrice per le caselle già scoperte 
+//mat=matrice per le caselle con la mina
+//num=matrice per le caselle con i numeri
+
+var move=1
+var min_att=0
+var val_const=20
+var top_a=270
+var right_a=70
+var width_a=100
+var height_a=25
+var top_b=320
+var right_b=20
+var width_b=200
+var height_b=50
+var pos=1
+var flag="false"
+var s='<img src="metal.gif" class="bigimg" id="nuovo">'
+var t='<img src="esci.jpg" class="smlimg" id="esci" >'
+var cc=1
+
+document.onkeydown=mKeyDown
+
+function mKeyDown(e)                                          //gestisce l'evento keyup
+{
+if (top_a==270) {                     //controlla se il menu è fermo allo stato iniziale
+mEvent=(document.All?event:e)
+switch (mEvent.keyCode)
+{
+case 38: menu();break;
+case 40: menu();break;
+case 13: enter();break;
+}}
+}
+
+function enter()
+{
+if (cc==1) {window.location.reload()} else {window.close()}
+}
+
+function menu()                                                      //gestisce il menu
+{
+if (cc==1)
+{document.getElementById('esci').style.zIndex=1;document.getElementById('nuovo').style.zIndex=0}
+else
+{document.getElementById('nuovo').style.zIndex=1;document.getElementById('esci').style.zIndex=0}
+
+conto=window.setInterval("increm()",40)
+window.setTimeout("end_increm(conto)",1040)                         //fermo l'intervallo per lo spostamento
+}
+
+function end_increm(c)
+{
+top_a=270
+right_a=70
+width_a=100
+height_a=25
+top_b=320
+right_b=20
+width_b=200
+height_b=50
+
+cc=cc*-1
+clearInterval(c)
+}
+
+function increm()
+{
+if (cc==1)
+{
+y=document.getElementById('esci')
+x=document.getElementById('nuovo')                   //scelgo se incrementare esci o nuovo grazie al flag cc
+}
+else
+{
+y=document.getElementById('nuovo')
+x=document.getElementById('esci')
+}
+
+top_a=top_a+2
+width_a=width_a+4
+right_a=right_a-2
+height_a++                                               //incrementa le coordinate del tasto dietro
+y.style.top=top_a
+y.style.width=width_a
+y.style.right=right_a
+y.style.height=height_a
+
+top_b=top_b-2
+right_b=right_b+2
+width_b=width_b-4
+height_b--
+x.style.top=top_b                                            //decrementa coordinate e grandezza del tasto davanti
+x.style.width=width_b
+x.style.right=right_b
+x.style.height=height_b
+
+}
+
+function screen_lamp()
+{
+pos=pos*-1;
+for (i=1; i<=25; i++) {
+for (j=1; j<=25; j++) {
+if (mat [i] [j] == true) {
+z=document.getElementById('x'+i+'y'+j);                                   
+z.style.background='#663366';
+z.style.border='3px inset silver';
+z.innerHTML='<img src="immi/mina'+pos+'.gif">'
+}
+}}
+}
+
+
+function gameover()
+{
+screen_lamp()
+flag='true'
+window.setInterval("screen_lamp()",1000)
+window.setTimeout("window.location.replace('esci.html')",5000)
+}
+
+function empty_td(px,py)
+{
+if (px<25) clear_td_or(px+1,py)
+if (py<25) clear_td_ver(px,py+1)   //controllo ricorsivo delle caselle vuote con controllo per l'estensione della tabella
+if (px>1) clear_td_or(px-1,py)
+if (py>1) clear_td_ver(px,py-1)
+}
+
+function clear_ver(px,py)
+{
+if (py<25) {
+if (att[px][py+1]==false) {                             //controlla che la casella non sia già stata scoperta
+att[px][py+1]=true 
+min_att++
+py++
+z=document.getElementById('xf'+px+'yf'+py);
+z.style.visibility='hidden';
+x=document.getElementById('x'+px+'y'+py)
+x.style.background='#663366';
+x.style.border='3px inset silver';
+if (num [px][py]==1) x.innerHTML='<img src="immi/uno.gif" style="visibility:visible">'
+if (num [px][py]==2) x.innerHTML='<img src="immi/due.gif" style="visibility:visible">'
+if (num [px][py]==3) x.innerHTML='<img src="immi/tre.gif" style="visibility:visible">'
+if (num [px][py]==4) x.innerHTML='<img src="immi/quattro.gif" style="visibility:visible">'
+if (num [px][py]==5) x.innerHTML='<img src="immi/cinque.gif" style="visibility:visible">'
+if (num [px][py]==6) x.innerHTML='<img src="immi/sei.gif" style="visibility:visible">'
+if (num [px][py]==7) x.innerHTML='<img src="immi/sette.gif" style="visibility:visible">'
+if (num [px][py]==0) {empty_td(px,py)}                 //in caso di spazio vuoto chiama la funzione per vuotare le caselle adiacenti
+py--
+
+}}
+if (py>1) {
+if (att[px][py-1]==false) {                             //controlla che la casella non sia già stata scoperta
+att[px][py-1]=true 
+min_att++
+py--
+z=document.getElementById('xf'+px+'yf'+py);
+z.style.visibility='hidden';
+x=document.getElementById('x'+px+'y'+py)
+x.style.background='#663366';
+x.style.border='3px inset silver';
+if (num [px][py]==1) x.innerHTML='<img src="immi/uno.gif" style="visibility:visible">'
+if (num [px][py]==2) x.innerHTML='<img src="immi/due.gif" style="visibility:visible">'
+if (num [px][py]==3) x.innerHTML='<img src="immi/tre.gif" style="visibility:visible">'
+if (num [px][py]==4) x.innerHTML='<img src="immi/quattro.gif" style="visibility:visible">'
+if (num [px][py]==5) x.innerHTML='<img src="immi/cinque.gif" style="visibility:visible">'
+if (num [px][py]==6) x.innerHTML='<img src="immi/sei.gif" style="visibility:visible">'
+if (num [px][py]==7) x.innerHTML='<img src="immi/sette.gif" style="visibility:visible">'
+if (num [px][py]==0) {empty_td(px,py)}                 //in caso di spazio vuoto chiama la funzione per vuotare le caselle adiacenti
+py++
+}}}
+
+function clear_or(px,py)
+{
+if (px<25) {
+if (att[px+1][py]==false) {                             //controlla che la casella non sia già stata scoperta
+att[px+1][py]=true 
+min_att++
+px++
+z=document.getElementById('xf'+px+'yf'+py);
+z.style.visibility='hidden';
+x=document.getElementById('x'+px+'y'+py)
+x.style.background='#663366';
+x.style.border='3px inset silver';
+if (num [px][py]==1) x.innerHTML='<img src="immi/uno.gif" style="visibility:visible">'
+if (num [px][py]==2) x.innerHTML='<img src="immi/due.gif" style="visibility:visible">'
+if (num [px][py]==3) x.innerHTML='<img src="immi/tre.gif" style="visibility:visible">'
+if (num [px][py]==4) x.innerHTML='<img src="immi/quattro.gif" style="visibility:visible">'
+if (num [px][py]==5) x.innerHTML='<img src="immi/cinque.gif" style="visibility:visible">'
+if (num [px][py]==6) x.innerHTML='<img src="immi/sei.gif" style="visibility:visible">'
+if (num [px][py]==7) x.innerHTML='<img src="immi/sette.gif" style="visibility:visible">'
+if (num [px][py]==0) {empty_td(px,py)}                 //in caso di spazio vuoto chiama la funzione per vuotare le caselle adiacenti
+px--
+}}
+if (px>1) {
+if (att[px-1][py]==false) {                             //controlla che la casella non sia già stata scoperta
+att[px-1][py]=true 
+min_att++
+px--
+z=document.getElementById('xf'+px+'yf'+py);
+z.style.visibility='hidden';
+x=document.getElementById('x'+px+'y'+py)
+x.style.background='#663366';
+x.style.border='3px inset silver';
+if (num [px][py]==1) x.innerHTML='<img src="immi/uno.gif" style="visibility:visible">'
+if (num [px][py]==2) x.innerHTML='<img src="immi/due.gif" style="visibility:visible">'
+if (num [px][py]==3) x.innerHTML='<img src="immi/tre.gif" style="visibility:visible">'
+if (num [px][py]==4) x.innerHTML='<img src="immi/quattro.gif" style="visibility:visible">'
+if (num [px][py]==5) x.innerHTML='<img src="immi/cinque.gif" style="visibility:visible">'
+if (num [px][py]==6) x.innerHTML='<img src="immi/sei.gif" style="visibility:visible">'
+if (num [px][py]==7) x.innerHTML='<img src="immi/sette.gif" style="visibility:visible">'
+if (num [px][py]==0) {empty_td(px,py)}                 //in caso di spazio vuoto chiama la funzione per vuotare le caselle adiacenti
+px++
+}}}
+
+function clear_td_or(px,py)
+{
+if (att[px][py]==false) {                             //controlla che la casella non sia già stata scoperta
+att[px][py]=true 
+min_att++
+z=document.getElementById('xf'+px+'yf'+py);
+z.style.visibility='hidden';
+x=document.getElementById('x'+px+'y'+py)
+x.style.background='#663366';
+x.style.border='3px inset silver';
+if (num [px][py]==1) x.innerHTML='<img src="immi/uno.gif" style="visibility:visible">'
+if (num [px][py]==2) x.innerHTML='<img src="immi/due.gif" style="visibility:visible">'
+if (num [px][py]==3) x.innerHTML='<img src="immi/tre.gif" style="visibility:visible">'
+if (num [px][py]==4) x.innerHTML='<img src="immi/quattro.gif" style="visibility:visible">'
+if (num [px][py]==5) x.innerHTML='<img src="immi/cinque.gif" style="visibility:visible">'
+if (num [px][py]==6) x.innerHTML='<img src="immi/sei.gif" style="visibility:visible">'
+if (num [px][py]==7) x.innerHTML='<img src="immi/sette.gif" style="visibility:visible">'
+if (num [px][py]==0) {empty_td(px,py)}                 //in caso di spazio vuoto chiama la funzione per vuotare le caselle adiacenti
+else {clear_ver(px,py)}
+}}
+
+function clear_td_ver(px,py)
+{
+if (att[px][py]==false) {                             //controlla che la casella non sia già stata scoperta
+att[px][py]=true 
+min_att++
+z=document.getElementById('xf'+px+'yf'+py);
+z.style.visibility='hidden';
+x=document.getElementById('x'+px+'y'+py)
+x.style.background='#663366';
+x.style.border='3px inset silver';
+if (num [px][py]==1) x.innerHTML='<img src="immi/uno.gif" style="visibility:visible">'
+if (num [px][py]==2) x.innerHTML='<img src="immi/due.gif" style="visibility:visible">'
+if (num [px][py]==3) x.innerHTML='<img src="immi/tre.gif" style="visibility:visible">'
+if (num [px][py]==4) x.innerHTML='<img src="immi/quattro.gif" style="visibility:visible">'
+if (num [px][py]==5) x.innerHTML='<img src="immi/cinque.gif" style="visibility:visible">'
+if (num [px][py]==6) x.innerHTML='<img src="immi/sei.gif" style="visibility:visible">'
+if (num [px][py]==7) x.innerHTML='<img src="immi/sette.gif" style="visibility:visible">'
+if (num [px][py]==0) empty_td(px,py)                 //in caso di spazio vuoto chiama la funzione per vuotare le caselle adiacenti
+else {clear_or(px,py)}
+}}
+
+function free_td(px,py)                              //funzione che scrive il numero indicatore di mina
+{
+if (att[px][py]==false) {                             //controlla che la casella non sia già stata scoperta
+att[px][py]=true 
+min_att++
+z=document.getElementById('xf'+px+'yf'+py);
+z.style.visibility='hidden';
+x=document.getElementById('x'+px+'y'+py)
+x.style.background='#663366';
+x.style.border='3px inset silver';
+if (num [px][py]==1) x.innerHTML='<img src="immi/uno.gif" style="visibility:visible">'
+if (num [px][py]==2) x.innerHTML='<img src="immi/due.gif" style="visibility:visible">'
+if (num [px][py]==3) x.innerHTML='<img src="immi/tre.gif" style="visibility:visible">'
+if (num [px][py]==4) x.innerHTML='<img src="immi/quattro.gif" style="visibility:visible">'
+if (num [px][py]==5) x.innerHTML='<img src="immi/cinque.gif" style="visibility:visible">'
+if (num [px][py]==6) x.innerHTML='<img src="immi/sei.gif" style="visibility:visible">'
+if (num [px][py]==7) x.innerHTML='<img src="immi/sette.gif" style="visibility:visible">'
+if (num [px][py]==0) {empty_td(px,py) }                //in caso di spazio vuoto chiama la funzione per vuotare le caselle adiacenti
+}
+if (min_att==(25*25)-val_const) {window.location.replace('win.html')}
+}
+
+function mDblClick(px,py)     //funzione che controlla se c'è la mina
+{
+if (flag=='false') {
+if (mat [px][py] == true) {gameover()} else {free_td(px,py)}        //in assenza di mina chiama la funzione per liberare la casella
+}}
+
+function mClick(px,py)
+{
+if (flag=='false') {
+if (att[px][py]==false) { 
+x=document.getElementById('xf'+px+'yf'+py)
+if (x.style.visibility=="hidden") {x.style.visibility="visible"} else {x.style.visibility="hidden"}
+}}}
+
+
+
+</script>
+
+
+</head>
+<body>
+<div class="contenitore"></div>
+<div id="game"></div>
+<div id="tab">
+<table id='tb1' align='center'>
+
+<script type="text/javascript">
+col=0
+for (yy=1;yy<=25;yy++)
+{document.writeln('<tr>')
+ for(xx=1;xx<=25;xx++)                   //tabella campo
+ { s='<td id="x'+xx+'y'+yy+'" onDblClick="mDblClick('+xx+','+yy+')" onClick="mClick('+xx+','+yy+')"></td>'
+ document.writeln(s)
+ }
+}
+
+att=new Array()
+for (i=0;i<=26;i++)
+{ att [i]= new Array()        //matrice per le caselle attivate
+for (j=0;j<=26;j++)
+{ att [i][j]=false}}
+
+for (i=1; i<26;i++)
+{ for (j=1; j<26; j++)
+{
+x=document.getElementById('x'+i+'y'+j)
+x.innerHTML='<img src="immi/flag.gif" id="xf'+i+'yf'+j+'" style="visibility:hidden">'
+}}
+
+
+mat= new Array()
+for (i=0;i<=26;i++)
+{ mat [i]= new Array()        //matrice matematica per il campo
+for (j=0;j<=26;j++)
+{ mat [i][j]=false}}
+
+for (i=1;i<=val_const;i++)
+{
+xx=Math.floor(Math.random()*25)
+xx++
+yy=Math.floor(Math.random()*25)           //posizionamento casuale mine
+yy++
+mat [xx][yy]=true
+}
+num= new Array()
+for (i=1;i<=25;i++)
+{ num [i]=new Array()
+for (j=1;j<=25;j++)
+{
+cont=0
+if (mat[i][j]!==true)
+{
+if (mat[i-1][j-1]==true) cont++
+if (mat[i][j-1]==true) cont++
+if (mat[i+1][j-1]==true) cont++
+if (mat[i+1][j]==true) cont++
+if (mat[i+1][j+1]==true) cont++
+if (mat[i][j+1]==true) cont++
+if (mat[i-1][j+1]==true) cont++
+if (mat[i-1][j]==true) cont++
+num [i][j]=cont
+}}}
+</script>
+
+</table>
+</div>
+<div id="over">
+
+<img src="metal.gif" class="bigimg" id="nuovo">
+<img src="esci.jpg" class="smlimg" id="esci" >
+</div>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<html> 
+<head>
+<style type="text/css">
+body            {
+                background:               black;
+				}
+
+.contenitore   {
+                width:                    100%;
+ 				height:                   70%;
+			    }
+				
+.or         	{ 
+				height:                   10%;
+				margin-left:              44%;
+				}
+			
+.ver        	{
+				width:                    10%;
+				height:                   450px;
+				}
+			  
+.img        	{
+				background:               black;
+				background-image:         url(allin.jpg);
+				background-position:      center;
+				background-repeat:        no-repeat;
+				width:                    80%;
+			    height:                   300px;
+				float:                    left;
+                }
+				
+.pappapronta    { width:                   15%;
+                float:                    left;
+                margin-left:               5%;				
+				        visibility:               hidden;
+	            }
+				
+.sotto          {
+				        height:                   10%;
+                margin-left:              33%;	
+                width:                    33%;			
+                }
+
+</style>
+
+<body>
+
+ <div class="or">
+    <img src="carica.jpg">
+ </div>
+   <div class="contenitore">
+		<div class="ver" style="float:left;">
+		</div>
+ 
+		<div class="img">
+		</div>
+ 
+		<div class="ver" style="float:right;">
+		</div>
+  </div>
+	<div class="sotto">
+		<div class="pappapronta" id="a2" >		<img src="1.gif"></div>
+		<div class="pappapronta" id="a3"  >		<img src="2.gif"></div>
+	    <div class="pappapronta" id="a4" >		<img src="3.gif"></div>
+		<div class="pappapronta" id="a5" 	>	<img src="4.gif"></div>
+		<div class="pappapronta" id="a6" >      <img src="5.gif"></div>
+	</div>
+	
+ <script type="text/javascript">
+var cont=1;
+c=window.setInterval('loading()',300)
+window.setTimeout('carica(c)',5700)
+
+
+function loading()
+{
+cont++
+if (cont==2){document.getElementById('a'+cont).style.visibility = 'visible';}
+if (cont==3){document.getElementById('a'+cont).style.visibility = 'visible';}
+if (cont==4){document.getElementById('a'+cont).style.visibility = 'visible';}
+if (cont==5){document.getElementById('a'+cont).style.visibility = 'visible';}
+if (cont==6){document.getElementById('a'+cont).style.visibility = 'visible';}
+if (cont==7){
+	 for(cont=2;cont<=6;cont++)
+	 {document.getElementById('a'+cont).style.visibility = 'hidden';}
+	 cont=1;
+	                  }
+}
+
+function carica(p)
+{
+clearInterval(p)
+window.location.replace('../blackTHEjack.html')
+}
+
+
+</script>
+
+</body>
+</html>

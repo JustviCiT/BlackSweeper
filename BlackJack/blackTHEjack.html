@@ -1,0 +1,68 @@
+<html> 
+<head>
+<link type="text/css" rel="stylesheet"href="ciss.css">                   
+<body onLoad="preblack()">
+<!----------------------------------------------------------------------------------------------------->
+<!-----------------------------------------------------------------------------------------------------> 
+<div id="contenitore2">
+ <div  class="coins"id="scp"></div>
+ <div class="coins" id="sco"></div>
+			<input type="button" value="INCREMENTA" class="bottone2" onClick="inc(+5)" id="btn1">
+			<input type="button" value="DECREMENTA" class="bottone2" onClick="inc(-5)" id="btn2">
+	<div class="mess" id="giocatore">  
+	   <div class="contenitore">IL GIOCATORE :    </div>                   <!-- impostazione contatore giocatore   -->
+   	   <div id="nG" class="nn"></div>
+	</div>
+	<div class="mess" id="croupier">  
+	   <div class="contenitore">IL CROUPIER :     </div>                  <!-- impostazione contatore croupier  -->
+	   <div id="nC" class="nn"></div>
+	</div> 
+</div>
+<!----------------------------------------------------------------------------------------------------->
+<!----------------------------------------------------------------------------------------------------->
+<div id="contenitore3">
+         <div id="carta"><img src="referimenti/carta2a.gif"></div>
+		 <!--   -->
+         <div class="contenitore">
+               <div class="carte" id="dd1"></div>                   <!--             <img src="carta2b.gif" id="immi">         -->
+			   <div class="carte" id="cc1"></div>
+		 </div>
+		 <div class="contenitore">
+               <div class="carte" id="dd2"></div>
+			   <div class="carte" id="cc2"></div>
+		 </div>	
+		 <div class="contenitore">
+               <div class="carte" id="dd3"></div>
+			   <div class="carte" id="cc3"></div>
+		 </div>	
+		 <div class="contenitore">
+               <div class="carte" id="dd4"></div>
+			   <div class="carte" id="cc4"></div>
+		 </div>	
+		 <div class="contenitore">
+               <div class="carte" id="dd5"></div>
+			   <div class="carte" id="cc5"></div>
+         </div>	
+         <div class="contenitore">
+               <div class="carte" id="dd6"></div>
+			   <div class="carte" id="cc6"></div>
+		 </div>			 
+</div>
+<!----------------------------------------------------------------------------------------------------->
+<!----------------------------------------------------------------------------------------------------->
+<div id="contenitore4">
+   <div class="contenitore">
+		<input type="button" value="HIT"    onClick="hit()" 	class="bottone"id="btn3" disabled="true";>
+		<input type="button" value="STAY"   onClick="stay()" 	class="bottone"id="btn4" disabled="true";>
+		<input type="button" value="DOUBLE" onClick="doublea()" class="bottone"id="btn5" disabled="true";>
+		<input type="button" value="DEAL"   onClick="iniz()"	class="bottone"id="btn7">
+		<input type="button" value="LEAVE"  onClick="window.close()" class="bottone">
+	</div>
+	<div id="stato"><---STATO DEL GIOCO----></div>
+</div>
+<!----------------------------------------------------------------------------------------------------->
+<!----------------------------------------------------------------------------------------------------->
+<script type="text/javascript" src="java.js">
+</script>
+</body>
+</html>
